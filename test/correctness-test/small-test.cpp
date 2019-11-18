@@ -5,7 +5,7 @@ using std::cout;
 using std::endl;
 using std::allocator;
 
-template<typename T, typename Alloc = std::allocator<T> >
+template<typename T, typename Alloc = std::allocator<T>, int init_size = 512 / sizeof(T) >
 class Sta
 {
 public:
@@ -58,7 +58,7 @@ public:
 			}
 			
 			else {
-				size_t x = p ? (p->end - p->begin) * 2 : 8;
+				size_t x = p ? (p->end - p->begin) * 2 : init_size;
 				
 				it = alloc.allocate(x);
 				p = new Node{ p, it, it + x };

@@ -15,7 +15,7 @@ using std::vector;
 #define repeat(n) for(int ______________ = (n); ______________ > 0; --______________)
 #define loop(i, l, r) for(int i = (l), ________r = (r); i <= ________r; ++i)
 
-template<typename T, typename Alloc = std::allocator<T> >
+template<typename T, typename Alloc = std::allocator<T>, int init_size = 512 / sizeof(T) >
 class Sta
 {
 public:
@@ -68,7 +68,7 @@ public:
 			}
 			
 			else {
-				size_t x = p ? (p->end - p->begin) * 2 : 8;
+				size_t x = p ? (p->end - p->begin) * 2 : init_size;
 				
 				it = alloc.allocate(x);
 				p = new Node{ p, it, it + x };

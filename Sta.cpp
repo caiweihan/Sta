@@ -1,8 +1,7 @@
-#include <memory>
+constexpr unsigned max(unsigned a, unsigned b)
+{ return a > b ? a : b; }
 
-using std::allocator;
-
-template<typename T, typename Alloc = std::allocator<T>, int init_size = 512 / sizeof(T) >
+template<typename T, typename Alloc = std::allocator<T>, int init_size = max(512 / sizeof(T), 8u)>
 class Sta
 {
 public:

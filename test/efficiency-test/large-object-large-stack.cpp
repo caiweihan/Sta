@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+#include <vector>
 #include <algorithm>
 #include <memory>
 #include <chrono>
@@ -10,12 +11,15 @@ using std::allocator;
 using std::stack;
 using std::vector;
 #define clock() std::chrono::high_resolution_clock::now()
-#define castT(x) std::chrono::duration_cast<std::chrono::microseconds>(x).count()
+#define castT(x) std::chrono::duration_cast< std::chrono::duration<int, std::milli> >(x).count()
 
 #define repeat(n) for(int ______________ = (n); ______________ > 0; --______________)
 #define loop(i, l, r) for(int i = (l), ________r = (r); i <= ________r; ++i)
 
-template<typename T, typename Alloc = std::allocator<T>, int init_size = 512 / sizeof(T) >
+constexpr unsigned max(unsigned a, unsigned b)
+{ return a > b ? a : b; }
+
+template<typename T, typename Alloc = std::allocator<T>, int init_size = max(512 / sizeof(T), 8u)>
 class Sta
 {
 public:
@@ -134,21 +138,27 @@ int main()
 		cout << "-----------------------------------\n";
 		
 		auto t = clock();
-		stack<S> a;
-		loop(i, 1, 1e5)
-			a.push(S());
+		repeat(10) {
+			stack<S> a;
+			loop(i, 1, 1e5)
+				a.push(S());
+		}
 		cout << "stack  " << castT(clock() - t) << endl;
 		
 		t = clock();
-		stack<S, vector<S> > b;
-		loop(i, 1, 1e5)
-			b.push(S());
+		repeat(10) {
+			stack<S, vector<S> > a;
+			loop(i, 1, 1e5)
+				a.push(S());
+		}
 		cout << "vector " << castT(clock() - t) << endl;
 		
 		t = clock();
-		Sta<S> c;
-		loop(i, 1, 1e5)
-			c.push(S());
+		repeat(10) {
+			Sta<S> a;
+			loop(i, 1, 1e5)
+				a.push(S());
+		}
 		cout << "Sta    " << castT(clock() - t) << endl;
 	}
 }

@@ -4,6 +4,8 @@
 #include <memory>
 #include <chrono>
 
+using std::cout;
+using std::endl;
 using std::allocator;
 using std::stack;
 using std::vector;
@@ -11,7 +13,7 @@ using std::vector;
 #define castT(x) std::chrono::duration_cast<std::chrono::microseconds>(x).count()
 
 #define repeat(n) for(int ______________ = (n); ______________ > 0; --______________)
-#define loop(i, l, r) for(LL i = (l), ________r = (r); i <= ________r; ++i)
+#define loop(i, l, r) for(int i = (l), ________r = (r); i <= ________r; ++i)
 
 template<typename T, typename Alloc = std::allocator<T> >
 class Sta

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+#include <vector>
 #include <algorithm>
 #include <memory>
 #include <chrono>
@@ -15,8 +16,10 @@ using std::vector;
 #define repeat(n) for(int ______________ = (n); ______________ > 0; --______________)
 #define loop(i, l, r) for(int i = (l), ________r = (r); i <= ________r; ++i)
 
+constexpr unsigned max(unsigned a, unsigned b)
+{ return a > b ? a : b; }
 
-template<typename T, typename Alloc = std::allocator<T>, int init_size = 512 / sizeof(T) >
+template<typename T, typename Alloc = std::allocator<T>, int init_size = max(512 / sizeof(T), 8u)>
 class Sta
 {
 public:

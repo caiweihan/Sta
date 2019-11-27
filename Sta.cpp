@@ -91,7 +91,7 @@ public:
 	{ return ! p; }
 	
 	size_t size()
-	{ return p ? p->end - p->begin + it - p->begin - 7 : 0; }
+	{ return p ? p->end - p->begin + it - p->begin - init_size + 1 : 0; }
 	
 private:
 	struct Node
